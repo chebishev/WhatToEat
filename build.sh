@@ -9,4 +9,5 @@ pip install -r requirements.txt
 python manage.py collectstatic --no-input
 
 # Apply any outstanding database migrations
+cd what_to_eat
 python manage.py migrate
