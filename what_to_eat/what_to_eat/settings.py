@@ -121,4 +121,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
+# This will print the email body to the console
+# It will contain the link to reset the password
 EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
