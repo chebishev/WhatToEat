@@ -120,7 +120,7 @@ if not DEBUG:    # Tell Django to copy static assets into a path called `staticf
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_DIRS = [
-    '/opt/render/project/src/what_to_eat/staticfiles'
+    os.path.join(BASE_DIR, 'staticfiles'),
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
