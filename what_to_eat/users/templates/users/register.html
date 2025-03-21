@@ -1,9 +1,18 @@
-{% extends "users/base.html" %}
+{% extends "base.html" %}
 
 {% block body %}
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Register</button>
+<div class="w3-container w3-light-grey w3-padding-32 w3-padding-large" id="contact">
+    <div class="w3-content" style="max-width:600px">
+      <h4 class="w3-center"><b>Register</b></h4>
+      <p>Do you want to log and save some food and to plan your weekly meals?</p>
+  <form method="POST" action="{% url 'register' %}">
+      {% csrf_token %}
+      <div class="w3-section">
+      {{ form.as_p }}
+    </div>
+    <button type="submit" class="w3-button w3-block w3-black w3-margin-bottom">Register</button>
+    
     </form>
+    </div>
+  </div>
 {% endblock %}  

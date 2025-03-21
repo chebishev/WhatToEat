@@ -1,9 +1,6 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm, UserRegistrationForm
-from django.contrib.auth.decorators import login_required
-
 
 def user_login(request):
     if request.method == 'POST':
@@ -18,21 +15,16 @@ def user_login(request):
             if user is not None:
                 # from django.contrib.auth
                 login(request, user)
-                return render(request, 'users/index.html')
+                return render(request, 'core/index.html')
             else:
-                return redirect('login')
+                return render(request, 'users/login.html', {'form': form, 'error': 'Invalid username or password'})
     else:
         form = LoginForm()
         return render(request, 'users/login.html', {'form': form})
 
 def user_logout(request):
     logout(request)
-    message = 'You are now logged out'
-    return render(request, 'users/index.html', {message: message})
-
-@login_required
-def index(request):
-    return render(request, 'users/index.html')
+    return redirect('login')
 
 def user_register(request):
     if request.method == 'POST':
