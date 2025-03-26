@@ -4,16 +4,15 @@
   <div class="w3-content" style="max-width:600px">
     <h4 class="w3-center"><b>Login</b></h4>
     <p>Do you want to log and save some food and to plan your weekly meals?</p>
-<form method="POST" action="{% url 'login' %}">
-    {% csrf_token %}
-    <div class="w3-section">
-    {{ form.as_p }}
+    <form method="POST" action="{% url 'login' %}">
+      {% csrf_token %}
+      <div class="w3-section">
+      {{ form.as_p }}
+      </div>
+      <button type="submit" class="w3-button w3-block w3-black w3-margin-bottom">Login</button>
+      <p><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+      <p><a href="{% url 'register' %}">Don't have an account?</a></p>
+    </form>
   </div>
-  <button type="submit" class="w3-button w3-block w3-black w3-margin-bottom">Login</button>
-  <p><a href="{% url 'password_reset' %}">Forgot password?</a></p>
-  <p><a href="{% url 'register' %}">Don't have an account?</a></p>
-
-</form>
-</div>
 </div>
 {% endblock %}
