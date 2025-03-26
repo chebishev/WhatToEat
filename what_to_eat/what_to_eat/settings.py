@@ -2,6 +2,7 @@ from pathlib import Path
 import os
 import dotenv
 from django.urls import reverse_lazy
+from import_export.formats.base_formats import CSV, XLSX
 
 dotenv.load_dotenv()
 
@@ -36,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'core',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +136,11 @@ EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
+# multiple import options
+IMPORT_FORMATS = [CSV, XLSX]
+# single export options
+EXPORT_FORMATS = [XLSX]
+IMPORT_EXPORT_USE_TRANSACTIONS = True
+
+LOGIN_URL = 'login'
