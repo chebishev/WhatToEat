@@ -2,12 +2,15 @@ asgiref==3.8.1
 Brotli==1.1.0
 click==8.1.8
 colorama==0.4.6
+diff-match-patch==20241021
 Django==5.1.7
+django-import-export==4.3.7
 gunicorn==23.0.0
 h11==0.14.0
 packaging==24.2
 python-dotenv==1.0.1
 sqlparse==0.5.3
+tablib==3.8.0
 tzdata==2025.1
 uvicorn==0.34.0
 whitenoise==6.9.0
