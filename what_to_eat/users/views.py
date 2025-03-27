@@ -1,6 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from .forms import LoginForm, UserRegistrationForm
+from django.contrib.auth.decorators import login_required
+from .forms import LoginForm, UserRegistrationForm, ProfileEditForm
+from django.http import HttpResponseForbidden
+from django.contrib.auth.models import User
 
 def user_login(request):
     if request.method == 'POST':
@@ -39,3 +42,35 @@ def user_register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'users/register.html', {'form': form})
+
+@login_required
+def user_profile(request, pk):
+    current_user = get_object_or_404(User, pk=pk)
+
+    if current_user != request.user:
+        return HttpResponseForbidden("You are not allowed to edit this profile.")
+    
+    return render(request, 'users/profile.html')
+
+def user_edit(request, pk):
+    current_user = get_object_or_404(UserModel, pk=pk)
+
+    if current_user != request.user:
+        return HttpResponseForbidden("You are not allowed to edit this profile.")
+
+    form = ProfileEditForm(request.POST or None, instance=current_user)
+
+    if form.is_valid():
+        instance = form.save(commit=False)
+        # TODO: examine this and check if something must be available to change at all!!!
+        instance.save()
+        return redirect('profile_details', pk=pk)
+    else:
+        form.fields['preferred_device'].widget.attrs['disabled'] = True
+
+    return render(request, 'auth_app/profile_edit.html', {'form': form})
+
+    return render(request, 'users/profile_edit')
+
+def user_delete(request, pk):
+    return render(request, 'user/profile_delete')

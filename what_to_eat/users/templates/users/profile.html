@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block body %}
+<h1 class="w3-center">Profile details:</h1>
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-center">
+      <div class="w3-container w3-cell-row w3-mobile">
+        <div class="w3-container w3-cell w3-mobile">
+          <h4>username:</h4>
+        </div>
+        <div class="w3-container w3-cell w3-mobile">
+          <h4>{{ user.username }}</h4>
+          <p>{{ user.id }}</p>
+        </div>
+      </div>
+        <div class="w3-container w3-cell-row w3-mobile">
+          <div class="w3-container w3-orange w3-cell w3-mobile">
+            <a href="" class="w3-">
+              <p>Edit Profile</p>
+            </a>
+          </div>
+          <div class="w3-container w3-red w3-cell w3-mobile">
+            <a href="" class="w3-">
+              <p>Delete Profile</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
