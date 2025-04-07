@@ -18,4 +18,3 @@ urlpatterns = [
         path("delete/", views.user_delete, name='profile_delete'),
     ])),
 ]   
-# TODO: change the rest of the I build views for testing purposes
