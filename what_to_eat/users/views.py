@@ -25,6 +25,7 @@ def user_login(request):
         form = LoginForm()
         return render(request, 'users/login.html', {'form': form})
 
+@login_required
 def user_logout(request):
     logout(request)
     return redirect('login')
@@ -52,6 +53,7 @@ def user_profile(request, pk):
     
     return render(request, 'users/profile.html')
 
+@login_required
 def user_edit(request, pk):
     current_user = get_object_or_404(UserModel, pk=pk)
 
@@ -72,5 +74,6 @@ def user_edit(request, pk):
 
     return render(request, 'users/profile_edit')
 
+@login_required
 def user_delete(request, pk):
     return render(request, 'user/profile_delete')
