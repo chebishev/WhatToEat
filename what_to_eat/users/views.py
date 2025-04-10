@@ -76,4 +76,12 @@ def user_edit(request, pk):
 
 @login_required
 def user_delete(request, pk):
+    current_user = get_object_or_404(UserModel, pk=pk)
+
+    if current_user != request.user:
+        return HttpResponseForbidden("You are not allowed to delete this profile.")
+    
+    if request.method == 'POST':
+        current_user.delete()
+        return redirect('index')
     return render(request, 'user/profile_delete')

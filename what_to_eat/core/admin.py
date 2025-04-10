@@ -1,6 +1,4 @@
 from django.contrib import admin
-from import_export import resources
-from import_export.admin import ImportExportActionModelAdmin
 from .models import Meal
 
 # Register your models here.
@@ -10,13 +8,4 @@ admin.site.site_header = "What To Eat - Admin Panel"
 admin.site.site_title = "What to eat?"
 
 
-class MealResource(resources.ModelResource):
-    class Meta: 
-        model = Meal
-
-
-class MealAdmin(ImportExportActionModelAdmin):
-    resource_class = MealResource
-
-
-admin.site.register(Meal, MealAdmin)
+admin.site.register(Meal)
